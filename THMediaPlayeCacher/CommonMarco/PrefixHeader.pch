@@ -1,0 +1,150 @@
+//
+//  PrefixHeader.pch
+//  DayTwo_UIbasic_Task_litianhao
+//
+//  Created by litianhao on 16/3/2.
+//  Copyright © 2016年 litianhao. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+
+#import "UIView+THEx.h"
+
+/// 自定义日志输出宏
+
+#ifdef DEBUG
+#define NSLog(FORMAT, ...) fprintf(stderr,"%s:%d\t%s\n",[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+#else
+#define NSLog(FORMAT, ...) nil
+#endif
+
+/// 文件管理器
+#define kTHFILEMANAGER_InstanceOfNSFileManager ([NSFileManager defaultManager])
+
+/**
+ *  屏幕尺寸宏
+ */
+#define STATUEBAR_HEIGHT_CGFloat (20.0)
+#define NAVIGATIONBAR_HEIGHT_CGFloat (44.0)
+#define SCREEN_WIDTH_CGFloat ([UIScreen mainScreen].bounds.size.width)
+#define SCREEN_HEIGHT_CGFloat ([UIScreen mainScreen].bounds.size.height)
+
+/**
+ *  当前视图或图层的宽或高
+ */
+#define SelfWidth_CGFloat       (self.bounds.size.width)
+#define SelfHeight_CGFloat      (self.bounds.size.height)
+/**
+ *  判断机型
+ */
+#define IS_IPHONE_4_BOOL (SCREEN_HEIGHT == 480)
+#define IS_IPHONE_5_BOOL (SCREEN_HEIGHT == 568)
+#define IS_IPHONE_6_BOOL (SCREEN_HEIGHT == 667)
+#define IS_IPHONE_6P_BOOL (SCREEN_HEIGHT == 736)
+
+/**
+ *  沙盒中documents路径
+ */
+#define kDocumentsPath_NSString ( NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject)
+
+/**
+ *  沙盒中cache路径
+ */
+#define kCachePath_NSString ( NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).lastObject)
+
+/**
+ *  沙盒中temp路径
+ */
+#define kTempPath_NSString (NSTemporaryDirectory())
+
+
+/**
+ *  偏好设置
+ */
+#define THUserDefault_InstanceOfNSUserDefaults  ([NSUserDefaults standardUserDefaults])
+#define kTHMusicListKey (@"musicList")
+
+
+///  指定字号系统字体
+#define System_Font_InstanceOfUIFont(size) ([UIFont systemFontOfSize:size])
+
+/**
+ * rgba颜色
+ */
+#define kColorWithRGBA_InstanceOfUIColor( r_CGFloat , g_CGFloat , b_CGFloat , a_CGFloat )    [UIColor colorWithRed:(r_CGFloat) / 255.f green:(g_CGFloat) / 255.f blue:(b_CGFloat) / 255.f alpha:(a_CGFloat)]
+
+/**
+ *   可指定透明度(CGFloat类型)的 随机颜色 UIColor类型
+ */
+#define kColorRandom_InstanceOfUIColor(alpha_CGFloat) [UIColor colorWithRed:arc4random_uniform(256)/255.0f green:arc4random_uniform(256)/255.0f blue:arc4random_uniform(256)/255.0f alpha:(alpha_CGFloat)]
+
+/**
+ *   可指定透明度(CGFloat类型)的 随机颜色 UIColor类型 暖色
+ */
+#define kColorWarmRandom_InstanceOfUIColor(alpha_CGFloat) [UIColor colorWithRed:(arc4random()%100 +150)/255.0f green:(arc4random()%100)/255.0f blue:(arc4random()%100)/255.0f alpha:(alpha_CGFloat)]
+
+/**
+ *   可指定透明度(CGFloat类型)的 随机颜色 UIColor类型 冷色
+ */
+#define kColorCoolRandom_InstanceOfUIColor(alpha_CGFloat) [UIColor colorWithRed:(arc4random()%100 )/255.0f green:(arc4random()%100+150)/255.0f blue:(arc4random()%100 + 150)/255.0f alpha:(alpha_CGFloat)]
+
+
+
+///  高精度浮点数判等阈值
+#define kTHFloatZeroThresholdValue_HeightPrecision_Double (0.00000001)
+
+///  中精度浮点数判等阈值
+#define kTHFloatZeroThresholdValue_MediumPrecision_Double (0.000001)
+
+///  低精度浮点数判等阈值
+#define kTHFloatZeroThresholdValue_LowPrecision_Double (0.00001)
+
+
+//网路API url相关
+#define APIBASEURL_BASE (@"http://apis.baidu.com/geekery/music")
+
+#define APIBASEURL_SEARCHSINGER  ( [APIBASEURL_BASE stringByAppendingPathComponent:@"singer"])
+
+#define APIBASEURL_SEARCHMUSIC ( [APIBASEURL_BASE stringByAppendingPathComponent:@"query"])
+
+#define APIBASEURL_SEARCHMUSICADDRESS ( [APIBASEURL_BASE stringByAppendingPathComponent:@"playinfo"])
+
+#define APIBASEURL_SEARCHMUSICLRC ( [APIBASEURL_BASE stringByAppendingPathComponent:@"krc"])
+
+#define APIKEY (@"c68719447b15969b3e717b748e54f492")
+
+#define THSafeUpdateUIUsingBlock(...)     do{\
+                                                                                if (![NSThread isMainThread]) {\
+                                                                                        dispatch_async(dispatch_get_main_queue(), ^{\
+                                                                                        __VA_ARGS__\
+                                                                                        });\
+                                                                                }else\
+                                                                                {\
+                                                                                        __VA_ARGS__\
+                                                                                }\
+                                                                            }while(0);
+//123 142 88
+#define kMainThemeColor(alpha_CGFloat) kColorWithRGBA_InstanceOfUIColor(16,19,36,alpha_CGFloat)
+#define kMainThemeBackgroundColor(alpha_CGFloat) kColorWithRGBA_InstanceOfUIColor(74,124,139,alpha_CGFloat)
+
+#define kTabbarControllerShouldShowPlayerViewNotificationName @"kTabbarControllerShouldShowPlayerViewNotificationName"
+#define kTabbarControllerHideBarNotificationName @"kTabbarControllerHideBarNotificationName"
+
+#define kTabbarControllerShouldShowPlayerViewKey @"kTabbarControllerShouldShowPlayerViewKey"
+
+
+#define MediaDataCacheMapFileName (@"mediaDataCacheMap.db")
+#define BasicCacheDirectoryName (@"mediaDataCache")
+#define BasicCacheDirectotyPath   ([NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:BasicCacheDirectoryName])
+
+#define MediaDataCacheMapFilePath ([BasicCacheDirectotyPath stringByAppendingPathComponent:MediaDataCacheMapFileName])
+
+#endif /*  end  __OBJC__ */
+
+#endif /* end  PrefixHeader_pch */
+
+

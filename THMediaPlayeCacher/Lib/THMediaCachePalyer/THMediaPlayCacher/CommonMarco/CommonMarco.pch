@@ -1,0 +1,50 @@
+//
+//  PrefixHeader.pch
+//  THMediaPlayeCacher
+//
+//  Created by litianhao on 16/6/23.
+//  Copyright © 2016年 litianhao. All rights reserved.
+//
+
+#ifndef CommonMarco_pch
+#define CommonMarco_pch
+
+#ifdef __OBJC__
+
+#import "MBProgressHUD+Show.h"
+#import "NSURL+THEx.h"
+#import "NSString+THEx.h"
+/// 自定义日志输出宏
+
+#ifdef DEBUG
+
+#ifndef NSLog
+#define NSLog(FORMAT, ...) fprintf(stderr,"%s:%d\t%s\n",[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+#endif  /*  end  NSLog(FORMAT, ...) */
+
+#else
+
+#ifndef NSLog
+#define NSLog(FORMAT, ...) nil
+#endif  /*  end  NSLog(FORMAT, ...) */
+
+#endif   /*end DEBUG */
+
+
+/**
+ *  沙盒中temp路径
+ */
+#define kTempPath_NSString (NSTemporaryDirectory())
+
+/// 文件管理器
+#ifndef kTHFILEMANAGER
+
+#define kTHFILEMANAGER ([NSFileManager defaultManager])
+
+#define kTHTempDirectoryPath 
+
+#endif  /* end kTHFILEMANAGER  */
+
+#endif /*  end  __OBJC__ */
+
+#endif /* CommonMarco_pch */
