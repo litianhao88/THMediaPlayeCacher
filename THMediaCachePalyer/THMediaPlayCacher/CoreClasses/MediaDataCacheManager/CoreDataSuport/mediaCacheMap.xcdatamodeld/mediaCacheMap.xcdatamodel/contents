@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15B42" minimumToolsVersion="Xcode 7.0">
+    <entity name="MediaCacheMap" representedClassName="MediaCacheMap" syncable="YES">
+        <attribute name="extensionTypeName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="headerInfo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastVisitDate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="lrcFilePath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="segFileMaps" optional="YES" attributeType="Transformable" valueTransformerName="THSegFileMaps" syncable="YES"/>
+        <attribute name="totalLength" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="urlMd5Key" optional="YES" attributeType="String" syncable="YES"/>
+        <userInfo>
+            <entry key="attributeValueClassName" value="NSDictionary"/>
+        </userInfo>
+    </entity>
+    <elements>
+        <element name="MediaCacheMap" positionX="-63" positionY="-18" width="128" height="150"/>
+    </elements>
+</model>
